@@ -1,24 +1,24 @@
 package com.xavi.src.core.application.listsubscribedusers;
 
-import com.xavi.src.core.domain.UserSubscriptionRepository;
+import com.xavi.src.core.domain.UserRepository;
 import com.xavi.src.core.domain.entity.UserId;
-import com.xavi.src.core.domain.entity.UserSubscription;
+import com.xavi.src.core.domain.entity.SubscribedUser;
 
 import java.util.stream.Collectors;
 
 public class ListSubscribedUsersService {
 
-  private UserSubscriptionRepository userSubscriptionRepository;
+  private UserRepository userRepository;
 
-  public ListSubscribedUsersService(UserSubscriptionRepository userSubscriptionRepository) {
-    this.userSubscriptionRepository = userSubscriptionRepository;
+  public ListSubscribedUsersService(UserRepository userRepository) {
+    this.userRepository = userRepository;
   }
 
   public ListSubscribedUsersResponse execute() {
     return new ListSubscribedUsersResponse(
-        userSubscriptionRepository.findAll()
+        userRepository.findAll()
             .stream()
-            .map(UserSubscription::getUserId)
+            .map(SubscribedUser::getUserId)
             .map(UserId::getValue)
             .collect(Collectors.toList())
     );

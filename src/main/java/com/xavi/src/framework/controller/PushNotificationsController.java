@@ -7,6 +7,8 @@ import com.xavi.src.core.application.sendnotification.SendNotificationService;
 import com.xavi.src.core.domain.exception.UserNotFoundException;
 import com.xavi.src.framework.http.SendNewMessageDto;
 import com.xavi.src.framework.http.SubscriptionDto;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -22,6 +24,8 @@ public class PushNotificationsController {
 
   private RegisterSubscriptionService registerSubscriptionService;
   private SendNotificationService sendNotificationService;
+  private final Logger LOGGER = LoggerFactory.getLogger(PushNotificationsController.class);
+
 
   public PushNotificationsController(
       RegisterSubscriptionService registerSubscriptionService,
@@ -61,10 +65,9 @@ public class PushNotificationsController {
     } catch (UserNotFoundException exception) {
       return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuario no encontrado");
     } catch (RuntimeException e) {
-      e.printStackTrace();
+      LOGGER.error("Error sending the message", e);
       return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error interno");
     }
-
     return ResponseEntity.ok("Notificacion enviada correctamente");
   }
 }

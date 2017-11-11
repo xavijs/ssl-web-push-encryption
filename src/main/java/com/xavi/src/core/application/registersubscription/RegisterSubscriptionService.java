@@ -1,39 +1,37 @@
 package com.xavi.src.core.application.registersubscription;
 
 import com.xavi.src.core.domain.SubscriptionRepository;
-import com.xavi.src.core.domain.UserSubscriptionRepository;
+import com.xavi.src.core.domain.UserRepository;
 import com.xavi.src.core.domain.entity.Subscription;
 import com.xavi.src.core.domain.entity.SubscriptionId;
 import com.xavi.src.core.domain.entity.UserId;
-import com.xavi.src.core.domain.entity.UserSubscription;
+import com.xavi.src.core.domain.entity.SubscribedUser;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class RegisterSubscriptionService {
 
+  private final Logger LOGGER = LoggerFactory.getLogger(RegisterSubscriptionService.class);
   private SubscriptionRepository subscriptionRepository;
-  private UserSubscriptionRepository userSubscriptionRepository;
+  private UserRepository userRepository;
 
   public RegisterSubscriptionService(
       SubscriptionRepository subscriptionRepository,
-      UserSubscriptionRepository userSubscriptionRepository
+      UserRepository userRepository
   ) {
     this.subscriptionRepository = subscriptionRepository;
-    this.userSubscriptionRepository = userSubscriptionRepository;
+    this.userRepository = userRepository;
   }
 
   public void execute(RegisterSubscriptionRequest request) {
 
     SubscriptionId subscriptionId = getSubscriptionId(request.getEndpoint());
 
-    if (userSubscriptionRepository.findBy(subscriptionId).isPresent()) {
-      System.out.println("Subscription already registered. Skipping.");
-      return;
-    }
-
-    userSubscriptionRepository.persist(
-        new UserSubscription(
+    userRepository.persist(
+        new SubscribedUser(
             new UserId(request.getUserId()),
             subscriptionId
         )
@@ -47,6 +45,8 @@ public class RegisterSubscriptionService {
             request.getAuthKey()
         )
     );
+
+    LOGGER.info("Stored subscription for user {}", request.getUserId());
   }
 
   private SubscriptionId getSubscriptionId(String endpoint) {

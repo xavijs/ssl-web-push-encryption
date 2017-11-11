@@ -1,10 +1,10 @@
 package com.xavi.src.core.domain.entity;
 
-public class UserSubscription {
+public class SubscribedUser {
   private UserId userId;
   private SubscriptionId subscriptionId;
 
-  public UserSubscription(UserId userId, SubscriptionId subscriptionId) {
+  public SubscribedUser(UserId userId, SubscriptionId subscriptionId) {
     this.userId = userId;
     this.subscriptionId = subscriptionId;
   }

@@ -6,9 +6,9 @@ import com.xavi.src.core.application.listsubscribedusers.ListSubscribedUsersServ
 import com.xavi.src.core.application.registersubscription.RegisterSubscriptionService;
 import com.xavi.src.core.application.sendnotification.SendNotificationService;
 import com.xavi.src.core.domain.SubscriptionRepository;
-import com.xavi.src.core.domain.UserSubscriptionRepository;
+import com.xavi.src.core.domain.UserRepository;
 import com.xavi.src.core.infrastructure.InMemorySubscriptionRepository;
-import com.xavi.src.core.infrastructure.InMemoryUserSubscriptionRepository;
+import com.xavi.src.core.infrastructure.InMemoryUserRepository;
 import com.xavi.src.framework.controller.PushNotificationsController;
 import nl.martijndwars.webpush.PushService;
 import org.springframework.context.annotation.Bean;
@@ -33,8 +33,8 @@ public class ApplicationConfiguration {
   }
 
   @Bean
-  public UserSubscriptionRepository userSubscriptionRepository() {
-    return new InMemoryUserSubscriptionRepository();
+  public UserRepository userSubscriptionRepository() {
+    return new InMemoryUserRepository();
   }
 
   @Bean
@@ -48,25 +48,25 @@ public class ApplicationConfiguration {
   @Bean
   public RegisterSubscriptionService registerSubscriptionService(
       SubscriptionRepository subscriptionRepository,
-      UserSubscriptionRepository userSubscriptionRepository
+      UserRepository userRepository
   ) {
-    return new RegisterSubscriptionService(subscriptionRepository, userSubscriptionRepository);
+    return new RegisterSubscriptionService(subscriptionRepository, userRepository);
   }
 
   @Bean
   public SendNotificationService sendNotificationService(
       PushService pushService,
       SubscriptionRepository subscriptionRepository,
-      UserSubscriptionRepository userSubscriptionRepository
+      UserRepository userRepository
   ) {
-    return new SendNotificationService(pushService, subscriptionRepository, userSubscriptionRepository);
+    return new SendNotificationService(pushService, subscriptionRepository, userRepository);
   }
 
   @Bean
   public ListSubscribedUsersService listSubscribedUsersService(
-      UserSubscriptionRepository userSubscriptionRepository
+      UserRepository userRepository
   ) {
-    return new ListSubscribedUsersService(userSubscriptionRepository);
+    return new ListSubscribedUsersService(userRepository);
   }
 
   @Bean
