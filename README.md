@@ -29,8 +29,8 @@
 
 ```
 
-- Website to accept notifications: https://localhost:443
-- Admin panel: https://localhost:443/admin
+- Website to accept notifications: https://localhost
+- Admin panel: https://localhost/admin
 
 
 ## Known issues
