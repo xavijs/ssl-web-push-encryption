@@ -8,8 +8,15 @@
  - Backend: Specify the PRIVATE_KEY in ApplicationConfiguration (This is the Server Key of Fire Base cloudmessaging)
 
 ## Run
+
+- To run in local:
 ```bash
 ./gradlew bootRun
+```
+
+- To run with Docker:
+```bash
+./gradlew build && docker-compose up --build
 ```
 
 ## Endpoints
