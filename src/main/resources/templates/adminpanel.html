@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Panel</title>
+</head>
+<body>
+<h1>Push notifications admin panel</h1>
+
+<fieldset title="Registered users">
+    <h3>Registered users</h3>
+    <ul>
+        {{#users}}
+        <li>{{.}}</li>
+        {{/users}}
+    </ul>
+
+</fieldset>
+<fieldset>
+    <form id="send-message-form">
+        <select>
+            {{#users}}
+            <option id="userId" value="{{.}}">{{.}}</option>
+            {{/users}}
+        </select>
+        <input name="message" id="message" type="text" placeholder="Message"/>
+        <input type="button" onclick="sendMessage();return false" value="ENVIAR"/>
+    </form>
+</fieldset>
+
+<script>
+  function sendMessage () {
+
+    var formData = {
+      "userId": document.getElementById("userId").value,
+      "message": document.getElementById("message").value
+    };
+
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "https://localhost:8443/message", true);
+    xhr.setRequestHeader("Content-type", "application/json;charset=UTF-8");
+    xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
+    xhr.send(JSON.stringify(formData));
+  }
+</script>
+</body>
+</html>

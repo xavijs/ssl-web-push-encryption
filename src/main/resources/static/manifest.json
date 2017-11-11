@@ -1,0 +1,10 @@
+{
+  "short_name": "xjsapp",
+  "name": "Xaviii Appp",
+  "icons": [],
+  "start_url": "/index.html",
+  "display": "standalone",
+  "orientation": "landscape",
+  "gcm_sender_id": "GCM_SENDER_ID",
+  "gcm_user_visible_only": true
+}
