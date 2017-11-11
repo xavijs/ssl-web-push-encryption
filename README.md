@@ -38,3 +38,5 @@
  
  - Javascript client is sending the subscription to hardcoded localhost
  
+ - Using a self-signed SSL certificate
+ 
