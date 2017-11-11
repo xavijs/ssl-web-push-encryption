@@ -12,7 +12,6 @@ import java.util.stream.Collectors;
 
 public class InMemoryUserRepository implements UserRepository {
 
-  private HashMap<SubscriptionId, UserId> subscriptionStorage = new HashMap<>();
   private HashMap<UserId, SubscriptionId> userStorage = new HashMap<>();
 
   @Override
@@ -32,7 +31,6 @@ public class InMemoryUserRepository implements UserRepository {
 
   @Override
   public void persist(SubscribedUser subscribedUser) {
-    subscriptionStorage.put(subscribedUser.getSubscriptionId(), subscribedUser.getUserId());
     userStorage.put(subscribedUser.getUserId(), subscribedUser.getSubscriptionId());
   }
 }
