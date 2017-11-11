@@ -1,4 +1,4 @@
-const backendUrlSubscriptionStorage = 'https://localhost:8443/subscription';
+const backendUrlSubscriptionStorage = 'https://localhost:443/subscription';
 
 if ('serviceWorker' in navigator) {
 

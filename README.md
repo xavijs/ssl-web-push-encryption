@@ -9,8 +9,8 @@
 
 ## Endpoints
 
-- Website: https://localhost:8443
-- Admin: https://localhost:8443/admin
+- Website: https://localhost:443
+- Admin: https://localhost:443/admin
 
 ## Notes
 
@@ -18,10 +18,10 @@
 
 ```bash
 
-/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --user-data-dir=/tmp/foo --ignore-certificate-errors --unsafely-treat-insecure-origin-as-secure=https://localhost:8443
+/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --user-data-dir=/tmp/foo --ignore-certificate-errors --unsafely-treat-insecure-origin-as-secure=https://localhost:443
 
 ```
-  change localhost:8443 according to your needs.
+  change localhost:443 according to your needs.
 
  - Server is accepting all Cross Domain requests
  

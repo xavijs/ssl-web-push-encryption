@@ -23,7 +23,7 @@
             <option id="userId" value="{{.}}">{{.}}</option>
             {{/users}}
         </select>
-        <input name="message" id="message" type="text" placeholder="Message"/>
+        <input name="message" id="message" type="text" placeholder="Message" value="Hola :D"/>
         <input type="button" onclick="sendMessage();return false" value="ENVIAR"/>
     </form>
 </fieldset>
@@ -37,7 +37,7 @@
     };
 
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", "https://localhost:8443/message", true);
+    xhr.open("POST", "https://localhost:443/message", true);
     xhr.setRequestHeader("Content-type", "application/json;charset=UTF-8");
     xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
     xhr.send(JSON.stringify(formData));
